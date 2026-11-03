@@ -8,13 +8,14 @@ set -eu
 cd "$(dirname "$0")"
 
 USER_NAME="${SUDO_USER:?Run with sudo: sudo ./install.sh}"
+[ -d build/pmsetly.app ] || { echo "Run ./build.sh first"; exit 1; }
 RULE=/etc/sudoers.d/pmsetly
 TMP=$(mktemp)
+trap 'rm -f "$TMP"' EXIT
 
 echo "$USER_NAME ALL=(root) NOPASSWD: /usr/bin/pmset -a disablesleep 0, /usr/bin/pmset -a disablesleep 1" > "$TMP"
 visudo -c -f "$TMP"
 install -m 0440 -o root -g wheel "$TMP" "$RULE"
-rm "$TMP"
 
 rm -rf /Applications/pmsetly.app
 cp -R build/pmsetly.app /Applications/

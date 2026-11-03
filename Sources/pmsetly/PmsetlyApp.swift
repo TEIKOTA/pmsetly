@@ -8,7 +8,7 @@ struct PmsetlyApp: App {
 
     var body: some Scene {
         MenuBarExtra {
-            Text(on == nil ? "Sleep prevention: unknown" : "Sleep prevention: \(on! ? "ON" : "OFF")")
+            Text("Sleep prevention: \(on.map { $0 ? "ON" : "OFF" } ?? "unknown")")
             Button(on == true ? "Turn OFF" : "Turn ON") {
                 failed = !Pmset.setSleepDisabled(on != true)
                 on = Pmset.sleepDisabled()
@@ -20,7 +20,10 @@ struct PmsetlyApp: App {
             Button("Quit") { NSApp.terminate(nil) }
         } label: {
             Image(systemName: on == true ? "cup.and.saucer.fill" : "moon.zzz")
-                .onAppear { on = Pmset.sleepDisabled() }
+                // Re-read every 5 s so the icon follows changes made by other tools.
+                .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { _ in
+                    on = Pmset.sleepDisabled()
+                }
         }
     }
 }

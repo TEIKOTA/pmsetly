@@ -30,7 +30,7 @@ Note: any process running as your user can then toggle sleep prevention (nothing
 
 ## Behavior
 
-- The icon shows the real system state (`SleepDisabled` in `pmset -g`), even if another tool changed it.
+- The icon shows the real system state (`SleepDisabled` in `pmset -g`), even if another tool changed it (re-checked every 5 s).
 - **Quit turns sleep prevention OFF.**
 - If the app crashes while ON, sleep stays disabled. Reopen the app and turn it OFF, or run:
   `sudo pmset -a disablesleep 0`
