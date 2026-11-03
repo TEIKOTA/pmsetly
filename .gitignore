@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+build/
+
+# environment variables（.env.example はコミットする）
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# macOS
+.DS_Store
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Claude Code のローカル設定（.claude が実ディレクトリ、.agents は .claude への symlink）
+.claude/settings.local.json
+.agents/settings.local.json
+**/.claude/scheduled_tasks.lock
+# Claude Code 組み込みの worktree（claude --worktree / EnterWorktree。ADR 20261029）
+.claude/worktrees/
+
+# misc
+*.local
+
+# Python のバイトコード（hook の判定器を import した検証などで生成される）
+__pycache__/
+*.pyc

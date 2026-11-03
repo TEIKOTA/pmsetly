@@ -1,0 +1,32 @@
+# 【既定オフ】このディレクトリ（workflows-disabled/）にある限り GitHub は workflow として
+# 認識しない。同等の検査はローカルの scripts/check-pr.sh が正本。CI を有効化する手順は
+# README「CI を有効化する場合」を参照（ADR: docs/adr/20260901-disable-github-actions-by-default.md）。
+#
+# PR のタイトル・body・参照 issue をローカル gate と同じ正本で検査する最小 CI。
+name: pr-checks
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  pr-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+    steps:
+      # 検査対象 PR が検証スクリプト自体を書き換えて CI を迂回できないよう、
+      # PR head / merge commit ではなく fixed base commit から正本 gate を取得する。
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+      - name: base 側の正本 gate で PR を検査
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: bash scripts/check-pr.sh "$PR_NUMBER" --repo "$GITHUB_REPOSITORY"
