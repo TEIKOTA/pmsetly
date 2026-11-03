@@ -83,19 +83,12 @@ sudo rm -rf /Applications/pmsetly.app
 
 ## 開発者向け
 
-開発に参加する場合だけ必要です。検証はローカルで行い、ローカル script が正本です（GitHub Actions は使っていません）。
-人間と AI エージェント共通の運用ルールは [`AGENTS.md`](AGENTS.md)、仕様は [`docs/spec.md`](docs/spec.md) にあります。
+変更は PR で受け付けます。PR では GitHub Actions（[`ci.yml`](.github/workflows/ci.yml)）が `swift test` と `./build.sh` を流し、通らないと `main` に merge できません。
+手元では次のコマンドで同じテストを流せます。仕様と「やらないこと」は [`docs/spec.md`](docs/spec.md) にあります。
 
 ```sh
 swift test    # pmset -g の出力を読む関数のテスト
 ```
-
-### 前提ツール
-
-- `gh`（GitHub CLI）
-- Python 3（`python3`）
-- Ruby（`ruby`）
-- lefthook（最初に一度 `lefthook install`）
 
 ## ライセンス
 

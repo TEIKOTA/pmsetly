@@ -6,6 +6,6 @@ let package = Package(
     platforms: [.macOS(.v13)],
     targets: [
         .executableTarget(name: "pmsetly"),
-        .testTarget(name: "pmsetlyTests", dependencies: ["pmsetly"], path: "tests/pmsetlyTests"),
+        .testTarget(name: "pmsetlyTests", dependencies: ["pmsetly"]),
     ]
 )

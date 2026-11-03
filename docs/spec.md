@@ -58,7 +58,7 @@ OSS として公開リポジトリで配布する。
 ## 既定で進める事項
 
 - アイコンは SF Symbols の 2 種類で ON/OFF を表す。5 秒ごとに実状態を読み直す（メニュー型の `MenuBarExtra` では、開くたびに読み直す hook が効かないと実測で確かめたため。2026-11-03）。
-- テストは `pmset -g` の出力を解析する関数だけに付ける。
+- テストは `pmset -g` の出力を解析する関数だけに付ける。PR では GitHub Actions が `swift test` と `./build.sh` を流し、main の branch protection でその通過を必須にする（2026-11-04、テンプレート由来の運用ファイルを削除したのに合わせて。issue #5）。
 - 発熱とバッテリーの注意は README に書く。
 
 ## Open Questions（未確定）
