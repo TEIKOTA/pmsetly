@@ -19,7 +19,7 @@ struct PmsetlyApp: App {
             Divider()
             Button("Quit") { NSApp.terminate(nil) }
         } label: {
-            Image(systemName: on == true ? "cup.and.saucer.fill" : "moon.zzz")
+            Image(systemName: on == true ? "figure.run.circle.fill" : "parkingsign.circle")
                 // Re-read every 5 s so the icon follows changes made by other tools.
                 .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { _ in
                     on = Pmset.sleepDisabled()
