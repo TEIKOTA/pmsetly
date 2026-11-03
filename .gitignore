@@ -38,3 +38,6 @@ yarn-error.log*
 # Python のバイトコード（hook の判定器を import した検証などで生成される）
 __pycache__/
 *.pyc
+
+# Swift
+.build/

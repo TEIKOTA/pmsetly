@@ -8,7 +8,9 @@
 
 ## リポジトリ構成
 
-<!-- 主要ディレクトリと責務をプロジェクトに合わせて記載する -->
+- `Sources/pmsetly/` — アプリ本体（`Pmset.swift`: pmset の読み書き、`PmsetlyApp.swift`: メニューバー UI）。仕様は [`docs/spec.md`](./docs/spec.md)。最小・可読を機能より優先する
+- `tests/pmsetlyTests/` — `pmset -g` パーサのテスト
+- `build.sh` / `install.sh` / `Info.plist` — `.app` の組み立てとインストール（sudoers 規則の決定は [ADR](./docs/adr/20261103-use-scoped-sudoers-rule-for-pmset.md)）
 - `docs/` — 設計ドキュメント・運用メモ（ビルド対象外）
 - `docs/adr/` — アーキテクチャ決定記録。運用ルールは [`docs/adr/README.md`](./docs/adr/README.md)
 - `scripts/` — 規約の検証（commit 件名・branch 名・PR body・PR 全体）と repo 初期設定
@@ -81,7 +83,8 @@
 
 ## コマンド
 
-<!-- セットアップ後に確定する -->
+- `swift test` — アプリのテスト（パーサ）
+- `./build.sh` — `build/pmsetly.app` を組み立てる。`sudo ./install.sh` で `/Applications` と sudoers に入れる
 - `bash tests/run-tests.sh` — 検査スクリプト群の self-test（scripts/ を変更したら必ず実行。push の前に lefthook の pre-push が `scripts/run-selftest.sh` で全件を流す（push する commit が作業ツリーと違う、owner が `collect` した branch を push する流れでは流さず、その旨を表示する。検証は PR の前のホストでの全件と `merge-pr.sh` の記録）。編集中は自動実行しない。macOS の Bash 3.2 での全件は PR の前に owner が流す）
 - `scripts/run-selftest.sh` — self-test を 1 回流す正本（pre-push から呼ばれる。派生 repo の `SELFTEST_CMD` 等の見つけ方もここ。ヘッダ参照）
 - `scripts/new-branch.sh <type> <issue番号> <slug>` — 規約検証付きで topic branch を作成する（既定は fetch 後の `origin/main`。取得失敗時は local main へ fallback。`--from` で変更可）

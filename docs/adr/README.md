@@ -66,3 +66,4 @@
 | 2026-10-17 | [self-test の自動実行を PostToolUse から pre-push へ移す](./20261017-move-selftest-from-posttooluse-to-pre-push.md) | accepted（「push の前には必ず通る」の条項のみ 2026-10-17 に部分 supersede） |
 | 2026-10-17 | [checkout 中でない branch の push でも pre-push の検査を走らせ、self-test は流さない旨を表示する](./20261017-run-prepush-checks-for-non-current-branch.md) | accepted |
 | 2026-10-29 | [Claude Code 組み込みの worktree（.claude/worktrees/）を worktree の正にする](./20261029-adopt-builtin-claude-worktrees.md) | accepted |
+| 2026-11-03 | [pmset の権限を「実行ユーザー限定・完全一致」の sudoers 規則で取る](./20261103-use-scoped-sudoers-rule-for-pmset.md) | accepted |
