@@ -44,6 +44,18 @@ sudo rm /etc/sudoers.d/pmsetly
 sudo rm -rf /Applications/pmsetly.app
 ```
 
+## Development（開発者向け）
+
+Only needed if you contribute. Checks run locally — ローカル script が正本 (GitHub Actions is off).
+Rules for humans and AI agents: [`AGENTS.md`](./AGENTS.md). Spec: [`docs/spec.md`](./docs/spec.md).
+
+### 前提ツール
+
+- `gh` (GitHub CLI)
+- Python 3 (`python3`)
+- Ruby (`ruby`)
+- lefthook (`lefthook install` once)
+
 ## License
 
 [MIT](./LICENSE)
